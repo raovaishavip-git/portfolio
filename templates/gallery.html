@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="container py-5">
+    <h2 class="fw-bold text-center mb-4">Photo Gallery</h2>
+    <div class="row g-4">
+        {% for img in images %}
+        <div class="col-md-4 col-sm-6">
+            <div class="card shadow">
+                <img src="{{ url_for('static', filename=img) }}" class="card-img-top" alt="Gallery Image">
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

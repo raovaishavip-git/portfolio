@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ data.name }} - Student Portfolio</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Student Portfolio - Aspiring Model, Writer, and Fitness Enthusiast">
+    <meta name="keywords" content="student model, creative writer, fitness enthusiast, beginner portfolio">
+    <meta name="author" content="{{ data.name }}">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <span class="brand-text">{{ data.name.split()[0] if data.name.split() else 'Portfolio' }}</span>
+            </div>
+            
+            <div class="nav-menu" id="nav-menu">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#services" class="nav-link">What I Do</a>
+                <a href="#portfolio" class="nav-link">My Work</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            
+            <div class="nav-cta">
+                <a href="#contact" class="btn btn-outline">Let's Connect</a>
+            </div>
+            
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">
+                        <span class="title-main">Hi! I'm an</span>
+                        <span class="title-highlight">Aspiring Model,</span>
+                        <span class="title-highlight">Creative Writer &</span>
+                        <span class="title-highlight">Fitness Enthusiast</span>
+                    </h1>
+                    
+                    <p class="hero-description">
+                        {{ data.bio }}
+                    </p>
+                    
+                    <div class="hero-actions">
+                        <a href="#portfolio" class="btn btn-primary">
+                            <span>See My Journey</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <a href="#contact" class="btn btn-secondary">
+                            <span>Let's Chat</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="hero-stats">
+                    {% for achievement in data.achievements %}
+                    <div class="stat-item">
+                        <span class="stat-number">{{ achievement.number }}</span>
+                        <span class="stat-label">{{ achievement.label }}</span>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            
+            <!-- CORRECTED HERO IMAGE WITH PROPER FLASK PATH -->
+            <div class="hero-image">
+                <div class="image-container">
+                    <div class="image-backdrop"></div>
+                    <div class="profile-image-wrapper">
+                        <img src="{{ url_for('static', filename='images/vaishavi.jpg') }}" 
+                             alt="My Profile Photo" 
+                             class="profile-image"
+                             style="display: none;"
+                             onload="this.style.display='block'; this.nextElementSibling.style.display='none';"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        
+                        <!-- Stylish Avatar Placeholder -->
+                        <div class="avatar-placeholder">
+                            <div class="avatar-circle">
+                                <div class="avatar-initials">VP</div>
+                            </div>
+                            <div class="avatar-info">
+                                <span class="avatar-name">{{ data.name }}</span>
+                                <span class="avatar-role">Portfolio Photo</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="image-frame"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section - PERFECTLY MATCHED -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">About Me</span>
+                <h2 class="section-title">My Story</h2>
+                <p class="section-description">
+                    Learning, growing, and following my passions every single day
+                </p>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Just Getting Started!</h3>
+                    <p>I'm a student who's passionate about exploring the creative world of modeling, writing, and fitness. While I'm still learning and building my skills, I bring enthusiasm, dedication, and a fresh perspective to every project I take on.</p>
+                    
+                    <div class="about-highlights">
+                        <div class="highlight-item">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span>Currently learning and improving my skills daily</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-heart"></i>
+                            <span>Passionate about creative expression and wellness</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-rocket"></i>
+                            <span>Always excited to take on new challenges</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-skills">
+                    <div class="skills-grid">
+                        <div class="skill-category">
+                            <h4>Student Modeling</h4>
+                            <div class="skill-list">
+                                <span>Portrait Photography</span>
+                                <span>Fashion Basics</span>
+                                <span>Posing Practice</span>
+                                <span>Social Media Content</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-category">
+                            <h4>Creative Writing</h4>
+                            <div class="skill-list">
+                                <span>Poem Writing</span>
+                                <span>Creative Stories</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-category">
+                            <h4>Fitness Journey</h4>
+                            <div class="skill-list">
+                                <span>Workout Planning</span>
+                                <span>Healthy Recipes</span>
+                                <span>Fitness Tips</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section - PERFECTLY MATCHED -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">What I Do</span>
+                <h2 class="section-title">My Passions</h2>
+                <p class="section-description">
+                    The three areas I'm most excited about exploring and developing
+                </p>
+            </div>
+            
+            <div class="services-grid">
+                {% for service in data.services %}
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="{{ service.icon }}"></i>
+                    </div>
+                    
+                    <h3 class="service-title">{{ service.title }}</h3>
+                    <p class="service-description">{{ service.description }}</p>
+                    
+                    <div class="service-skills">
+                        {% for skill in service.skills %}
+                        <span class="skill-tag">{{ skill }}</span>
+                        {% endfor %}
+                    </div>
+                    
+                    <a href="#contact" class="service-cta">
+                        <span>Let's Talk</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section with Photo Holders -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">My Work</span>
+                <h2 class="section-title">Learning Journey</h2>
+                <p class="section-description">
+                    Some of my practice work and projects as I develop my skills
+                </p>
+            </div>
+            
+            <div class="portfolio-filters">
+                <button class="filter-btn active" data-filter="all">All Work</button>
+                <button class="filter-btn" data-filter="modeling">Modeling</button>
+                <button class="filter-btn" data-filter="writing">Writing</button>
+                <button class="filter-btn" data-filter="fitness">Fitness</button>
+            </div>
+            
+            <div class="portfolio-grid">
+                {% for item in data.portfolio_items %}
+                <div class="portfolio-item" data-category="{{ item.category }}">
+                    <div class="portfolio-image">
+                        <img src="{{ url_for('static', filename=item.src) }}" 
+                             alt="{{ item.title }}" 
+                             loading="lazy"
+                             onerror="this.src='https://via.placeholder.com/400x400/{{ ['ff6b6b', '4ecdc4', '45b7d1', 'f9ca24', 'f0932b', '6c5ce7'][loop.index0 % 6] }}/ffffff?text={{ item.category|title }}+Photo'">
+                        <div class="portfolio-overlay">
+                            <div class="overlay-content">
+                                <div class="project-category">{{ item.category|title }}</div>
+                                <h4 class="project-title">{{ item.title }}</h4>
+                                <p class="project-client">{{ item.client }} • {{ item.year }}</p>
+                                <p class="project-description">{{ item.description }}</p>
+                                <div class="overlay-actions">
+                                    <button class="overlay-btn" onclick="openLightbox('{{ item.src }}', '{{ item.title }}', '{{ item.description }}')">
+                                        <i class="fas fa-expand-alt"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Get in Touch</span>
+                <h2 class="section-title">Let's Connect!</h2>
+                <p class="section-description">
+                    I'd love to hear from you! Whether it's a collaboration, advice, or just saying hi 😊
+                </p>
+            </div>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-card">
+                        <h3>Say Hello!</h3>
+                        <p>I'm always open to meeting new people, learning from others, and exploring opportunities to grow. Don't hesitate to reach out!</p>
+                        
+                        <div class="contact-methods">
+                            <div class="contact-method">
+                                <i class="fas fa-envelope"></i>
+                                <div>
+                                    <span class="method-label">Email</span>
+                                    <span class="method-value">Raovaishavip@gmail.com</span>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-method">
+                                <i class="fas fa-phone"></i>
+                                <div>
+                                    <span class="method-label">Phone</span>
+                                    <span class="method-value">+91 9113692922</span>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-method">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <div>
+                                    <span class="method-label">Location</span>
+                                    <span class="method-value">Mangalore Karnataka, India</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="social-links">
+                            <a href="#" class="social-link" aria-label="Instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="social-link" aria-label="LinkedIn">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="#" class="social-link" aria-label="Twitter">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form-container">
+                    <form class="contact-form" id="contact-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Your Name *</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Your Email *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="company">School/College (Optional)</label>
+                            <input type="text" id="company" name="company">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="service">What interests you?</label>
+                            <select id="service" name="service">
+                                <option value="">Select one</option>
+                                <option value="modeling">Modeling Tips/Collaboration</option>
+                                <option value="writing">Writing Projects</option>
+                                <option value="fitness">Fitness Journey</option>
+                                <option value="general">Just saying hi!</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Your Message *</label>
+                            <textarea id="message" name="message" rows="5" placeholder="Tell me what's on your mind..." required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-full">
+                            <span>Send Message</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h4>{{ data.name }}</h4>
+                    <p>Student • Dreamer • Creator • Always Learning 🌟</p>
+                </div>
+                
+                <div class="footer-links">
+                    <a href="#home">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#services">What I Do</a>
+                    <a href="#portfolio">My Work</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                
+                <div class="footer-legal">
+                    <p>&copy; 2025 {{ data.name }}. Made with ❤️ and lots of learning!</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <div class="lightbox-content" onclick="event.stopPropagation()">
+            <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+            <img src="" alt="" class="lightbox-image" id="lightbox-image">
+            <div class="lightbox-info">
+                <h4 id="lightbox-title"></h4>
+                <p id="lightbox-description"></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
